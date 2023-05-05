@@ -1,13 +1,17 @@
 import * as React from 'react';
 import MenuItem from '@mui/material/MenuItem';
+import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import Zoom from '@mui/material/Zoom';
 import { ATL, BKN, BOS, CHA, CHI, CLE, DAL,DEN, DET,GSW, HOU, IND, LAC, LAL,MEM, MIA,MIL,MIN,NOP,NYK,OKC,ORL,PHI,PHX,POR,SAC,SAS,TOR,UTA,WAS} from 'react-nba-logos';
 
 export default function ControlledOpenSelect() {
+    const [checked, setChecked] = React.useState(false);
+
     const teams = [
         {
           value: 'ATL',
@@ -131,12 +135,25 @@ export default function ControlledOpenSelect() {
         },
       ];
 
+      const icon = (
+        <Paper sx={{ m: 1 }} elevation={4}>
+          <Box component="svg" sx={{ width: 100, height: 200 }}>
+            <GSW/>
+          </Box>
+        </Paper>
+      );
+
+      const handleChange = () => {
+        setChecked((prev) => !prev);
+      };
+
+
 
     return (
         <div>
             <Box sx={{
-                width: 800,
-                height: 500,
+                width: 1000,
+                height: 400,
                 backgroundColor: '#778196',
                 borderRadius: '10px',
                 justifyContent: 'center',
@@ -147,7 +164,7 @@ export default function ControlledOpenSelect() {
                 pt: '40px',
                 
             }}>
-                <Stack spacing={2} direction="row">
+                <Stack spacing={6} direction="row">
                     <TextField
                     id="filled-select-team"
                     select
@@ -163,7 +180,7 @@ export default function ControlledOpenSelect() {
                     ))}
                     </TextField>
 
-                    <Typography variant="h5" sx={{color: '#282c34'}}>
+                    <Typography variant="h2" sx={{color: '#282c34'}}>
                         vs.
                     </Typography>
 
@@ -183,14 +200,20 @@ export default function ControlledOpenSelect() {
                     </TextField>
 
                 </Stack>
-                    <Button variant="contained" size="large" sx={{margin: '15px', mt: '40px', ml: '40px'}}>
+                    <Button 
+                    variant="contained" 
+                    size="large" 
+                    sx={{margin: '15px', mt: '40px', ml: '40px'}}
+                    onClick={handleChange}
+                    >
                         Results
                     </Button>
-                <div>
+                <Stack spacing={2} direction='column'>
                     <Typography variant="h5" sx={{color: '#282c34'}}>
                         Predicted Winner:
                     </Typography>
-                </div>
+                    <Zoom in={checked}>{icon}</Zoom>
+                </Stack>
             </Box>
         </div>
     );

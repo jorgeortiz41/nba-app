@@ -1,5 +1,6 @@
-import logo from './logo.svg';
+import logo from './nba.svg';
 import './App.css';
+import ControlledOpenSelect from './ControlledOpenSelect';
 
 function App() {
   return (
@@ -7,17 +8,15 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Predict NBA Outcomes
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      {/* create new div for content */}
+      <div className="content">
+        {/* add ControlledOpenSelect component */}
+        <ControlledOpenSelect />
+       </div>
+
     </div>
   );
 }
